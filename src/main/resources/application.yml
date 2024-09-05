@@ -1,0 +1,90 @@
+server:
+  port: 1515
+  servlet:
+    context-path: /loyalty/api/v1
+#grpc:
+#  server:
+#    port: 9090
+#  client:
+#    grpc-test:
+#      address: 10.10.10.4
+#      port: 31205
+#springdoc:
+#  swagger-ui:
+#    path: /swagger-ui.html
+#    operationsSorter: method
+logging:
+  level:
+    root: info
+spring:
+  security:
+    user:
+      name: user
+      password: password
+  main:
+    allow-bean-definition-overriding: true
+  application:
+    name: ac-loyalty
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        jdbc:
+          time_zone: GMT+7
+  #        type_contributors: com.vladmihalcea.hibernate.type.enum.EnumTypeContributor
+  datasource:
+    url: jdbc:postgresql://10.10.10.9:5432/loyalty_system?currentSchema=loyalty
+    username: postgres
+    password: ac@2023
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      auto-commit: false
+      connectionTimeout: 20000
+      maximumPoolSize: 20
+      minimum-idle: 5
+  devtools:
+    add-properties: false
+  data:
+    repositories:
+      enabled: true
+
+management:
+  endpoints:
+    web:
+      base-path: /actuator
+      exposure:
+        include: [ "health","prometheus", "metrics" ]
+  endpoint:
+    health:
+      show-details: always
+    metrics:
+      enabled: true
+    prometheus:
+      enabled: true
+#keycloak:
+#  realm: LOYALTY
+#  auth-server-url: https://keycloak-dev.cardoctor.com.vn
+#  resource: Loyalty_Admin
+#  credentials:
+#    secret: Mu6rotSIEohypMHePLXx1V2szItmBYLu
+#  use-resource-role-mappings: true
+#  bearer-only: true
+#  ssl-required: external
+elasticsearch:
+  host: 10.10.10.9
+  port: 9200
+  cluster-name: loyalty_AC
+  username: elastic
+  password: abc@123!@
+  max-page: 10000000
+referral:
+  code:
+    length: 10
+com:
+  ac:
+    loyalty:
+      service:
+        ignores: /loyalty/api/v1/register

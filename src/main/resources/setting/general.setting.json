@@ -1,0 +1,20 @@
+{
+  "analysis": {
+    "analyzer": {
+      "default": {
+        "type": "custom",
+        "tokenizer": "vi_tokenizer",
+        "filter": [
+          "lowercase",
+          "ascii_folding"
+        ]
+      }
+    },
+    "filter": {
+      "ascii_folding": {
+        "type": "asciifolding",
+        "preserve_original": true
+      }
+    }
+  }
+}
